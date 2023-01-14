@@ -9,8 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: cd hass-listener
-
       - name: Build and publish to ghcr.io
         uses: macbre/push-to-ghcr@master
         with:
@@ -18,3 +16,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # dockerfile: "hass-listener/Dockerfile"
           image_tag: "latest"
+          context: hass-listener
