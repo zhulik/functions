@@ -9,12 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Log in to the Container registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Docker Login
+        run: |
+          echo ${{ secrets.GITHUB_TOKEN }} |
+            docker login ghcr.io --username
+            ${{ steps.get_repo_owner.outputs.repo_owner }}
+            --password-stdin
 
       - name: Build functions
         run: |
