@@ -9,10 +9,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: OpenFaaS build and push
-        uses: mrsimpson/action-openfaas-build@master
+      - name: Log in to the Container registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
-          stack-file: stack.yml
-          platforms: linux/amd64
-          docker-username: ${{ github.actor }}
-          docker-password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build functions
+        run: |
+          curl -sSL https://cli.openfaas.com | sh
+          faas-cli build
+          faas-cli push
