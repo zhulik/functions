@@ -9,13 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Docker Login
-        run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ${{ github.repository_owner }} --password-stdin
-
-      - name: Build functions
-        run: |
-          curl -sSL https://cli.openfaas.com | sh
-
-          faas-cli build
-          docker push ghcr.io/zhulik/fn_hass_listener:latest
+      - name: Build and publish to ghcr.io
+        uses: macbre/push-to-ghcr@master
+        with:
+          image_name: ${{ github.repository_owner }}/hass-listener}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dockerfile: "hass-listener}/Dockerfile"
+          image_tag: "latest"
