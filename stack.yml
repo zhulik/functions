@@ -6,4 +6,4 @@ functions:
   hass-listener:
     lang: ruby
     handler: ./hass-listener
-    image: ghcr.io/hass-listener:latest
+    image: ghcr.io/zhulik/fn-hass-listener:latest
