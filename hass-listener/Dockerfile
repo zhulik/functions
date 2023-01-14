@@ -1,38 +1,35 @@
-# TODO: multistage build
+FROM openfaas/of-watchdog:0.8.1 as watchdog
 
-FROM ghcr.io/openfaas/classic-watchdog:0.2.1 as watchdog
-FROM ruby:alpine
+FROM ruby:3.2.0-slim-buster
 
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
 
-RUN apk --no-cache add gcc alpine-sdk
-
-WORKDIR /home/app
-
-COPY function  function
+ARG ADDITIONAL_PACKAGE
+RUN apt-get update &&\
+  apt-get install -qy --no-install-recommends build-essential
 
 RUN mkdir -p /home/app/function
 
 WORKDIR /home/app/function
 
+COPY function .
+
 RUN bundle install
 
-RUN addgroup -S app \
-  && adduser app -S -G app
+RUN addgroup --system app &&\
+    adduser --system --ingroup app app
 
 RUN chown app:app -R /home/app
 
 USER app
 
-WORKDIR /home/app/function
-
 ENV fprocess="ruby handler.rb"
 EXPOSE 8080
 
-ENV upstream_url="http://127.0.0.1:8080"
-ENV mode="http"
-
 HEALTHCHECK --interval=2s CMD [ -e /tmp/.lock ] || exit 1
+
+ENV upstream_url="http://127.0.0.1:5000"
+ENV mode="http"
 
 CMD ["fwatchdog"]
