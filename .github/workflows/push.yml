@@ -11,8 +11,7 @@ jobs:
 
       - name: Docker Login
         run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | \
-            docker login ghcr.io --username ${{ steps.get_repo_owner.outputs.repo_owner }} --password-stdin
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username ${{ github.repository_owner }} --password-stdin
 
       - name: Build functions
         run: |
