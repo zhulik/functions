@@ -4,7 +4,7 @@ FROM ruby:alpine
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
 
-RUN apk --no-cache add build-essentials
+RUN apk --no-cache add gcc
 
 WORKDIR /home/app
 
