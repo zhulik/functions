@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'main')
+    if: ${{ github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v2
 
@@ -20,4 +20,4 @@ jobs:
           # User for authenticating at OpenFaaS gateway
           # openfaas-username: ${{ secrets.OPENFAAS_USERNAME }}
           # Password for authenticating at OpenFaaS gateway
-          # openfaas-password: ${{ secrets.OPENFAAS_PASSWORD }}
+          openfaas-password: ${{ secrets.OPENFAAS_PASSWORD }}
