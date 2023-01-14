@@ -1,4 +1,5 @@
-FROM openfaas/of-watchdog:0.8.1 as watchdog
+# TODO: mulstistage guild
+FROM openfaas/of-watchdog:0.8.2 as watchdog
 
 FROM ruby:3.2.0-slim-buster
 
