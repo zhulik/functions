@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+
+functions:
+  hass-listener:
+    lang: ruby
+    handler: ./hass-listener
+    image: ghcr.io/hass-listener:latest

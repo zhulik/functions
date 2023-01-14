@@ -1,0 +1,23 @@
+name: Ruby
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: OpenFaaS build and push
+        uses: mrsimpson/action-openfaas-build@master
+        with:
+          stack-file: stack.yml
+          platforms: linux/amd64
+          # deploy: ${{ github.ref == 'refs/heads/master' }}
+          # OpenFaaS gateway URL (http(s)://my-public-gateway.tld)
+          # openfaas-gateway: ${{ secrets.OPENFAAS_GATEWAY }}
+          # User for authenticating at OpenFaaS gateway
+          # openfaas-username: ${{ secrets.OPENFAAS_USERNAME }}
+          # Password for authenticating at OpenFaaS gateway
+          # openfaas-password: ${{ secrets.OPENFAAS_PASSWORD }}
