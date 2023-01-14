@@ -17,4 +17,5 @@ jobs:
         run: |
           curl -sSL https://cli.openfaas.com | sh
 
-          faas-cli publish --platforms linux/amd64
+          faas-cli build
+          docker push ghcr.io/zhulik/fn_hass_listener:latest
