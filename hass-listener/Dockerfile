@@ -29,7 +29,7 @@ EXPOSE 8080
 
 HEALTHCHECK --interval=2s CMD [ -e /tmp/.lock ] || exit 1
 
-ENV upstream_url="http://127.0.0.1:5000"
+ENV upstream_url="http://127.0.0.1:4567"
 ENV mode="http"
 
 CMD ["fwatchdog"]
