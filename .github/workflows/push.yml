@@ -14,10 +14,6 @@ jobs:
         with:
           stack-file: stack.yml
           platforms: linux/amd64
-          # deploy: ${{ github.ref == 'refs/heads/master' }}
-          # OpenFaaS gateway URL (http(s)://my-public-gateway.tld)
-          # openfaas-gateway: ${{ secrets.OPENFAAS_GATEWAY }}
-          # User for authenticating at OpenFaaS gateway
-          # openfaas-username: ${{ secrets.OPENFAAS_USERNAME }}
-          # Password for authenticating at OpenFaaS gateway
+          docker-username: #{{ github.actor }}
+          docker-password: #{{ secrets.GITHUB_TOKEN }}
           openfaas-password: ${{ secrets.OPENFAAS_PASSWORD }}
