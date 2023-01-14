@@ -1,4 +1,4 @@
-# TODO: mulstistage guild
+# TODO: mulstistage build
 FROM openfaas/of-watchdog:0.8.2 as watchdog
 
 FROM ruby:3.2.0-slim-buster
@@ -28,7 +28,7 @@ USER app
 ENV fprocess="ruby handler.rb"
 EXPOSE 8080
 
-HEALTHCHECK --interval=2s CMD [ -e /tmp/.lock ] || exit 1
+HEALTHCHECK --interval=2s CMD curl -f http://127.0.0.1:4567/healthcheck
 
 ENV upstream_url="http://127.0.0.1:4567"
 ENV mode="http"
