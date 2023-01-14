@@ -23,7 +23,7 @@ RUN chown app:app -R /home/app
 
 USER app
 
-WORKDIR /home/app
+WORKDIR /home/app/function
 
 ENV fprocess="ruby handler.rb"
 EXPOSE 8080
