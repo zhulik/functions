@@ -1,8 +1,11 @@
 require 'sinatra'
 
+
+require 'json'
+
 class Handler
   def run(request)
-    [200, {}, request.env.to_s]
+    [200, {}, request.env.to_json]
   end
 end
 
