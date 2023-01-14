@@ -14,6 +14,6 @@ jobs:
         with:
           image_name: ${{ github.repository_owner }}/hass-listener
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # dockerfile: "hass-listener/Dockerfile"
+          dockerfile: "hass-listener/Dockerfile"
           image_tag: "latest"
           context: hass-listener
