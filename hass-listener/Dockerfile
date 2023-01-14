@@ -1,10 +1,12 @@
+# TODO: multistage build
+
 FROM ghcr.io/openfaas/classic-watchdog:0.2.1 as watchdog
 FROM ruby:alpine
 
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
 
-RUN apk --no-cache add gcc
+RUN apk --no-cache add gcc alpine-sdk
 
 WORKDIR /home/app
 
