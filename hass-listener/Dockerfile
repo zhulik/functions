@@ -30,7 +30,7 @@ WORKDIR /home/app/function
 ENV fprocess="ruby handler.rb"
 EXPOSE 8080
 
-ENV upstream_url="http://127.0.0.1:5000"
+ENV upstream_url="http://127.0.0.1:8080"
 ENV mode="http"
 
 HEALTHCHECK --interval=2s CMD [ -e /tmp/.lock ] || exit 1

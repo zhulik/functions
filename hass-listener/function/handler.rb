@@ -1,3 +1,5 @@
+require 'sinatra'
+
 class Handler
   def run(body, env)
     status_code = 200 # Optional status code, defaults to 200
@@ -7,11 +9,6 @@ class Handler
     [body, response_headers, status_code]
   end
 end
-
-require 'sinatra'
-
-set :port, 5000
-# set :bind, '0.0.0.0'
 
 handler = Handler.new
 
