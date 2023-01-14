@@ -16,5 +16,5 @@ jobs:
       - name: Build functions
         run: |
           curl -sSL https://cli.openfaas.com | sh
-          faas-cli build
-          faas-cli push
+
+          faas-cli publish --platforms linux/amd64
