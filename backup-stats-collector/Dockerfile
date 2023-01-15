@@ -11,6 +11,9 @@ RUN adduser --system app &&\
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
 
+RUN apt-get update &&\
+  apt-get install -qy --no-install-recommends restic
+
 EXPOSE 8080
 HEALTHCHECK --interval=2s CMD curl -f http://127.0.0.1:4567/healthcheck
 
