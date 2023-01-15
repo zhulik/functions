@@ -5,10 +5,10 @@ source "https://rubygems.org"
 gem "async-process"
 gem "aws-sdk-s3"
 gem "falcon"
+gem "ox"
 gem "sentry-ruby"
 gem "sinatra"
 gem "zeitwerk"
-gem "ox"
 
 group :development, :test do
   gem "async-rspec"
