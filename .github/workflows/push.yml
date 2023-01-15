@@ -7,13 +7,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
+
     strategy:
       matrix:
         function:
           - hass-listener
 
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.function }}/function/Gemfile
+
     steps:
       - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run the default task
+        run: |
+          cd ${{ github.workspace }}/${{ matrix.function }}/function
+          bundle exec rubocop
 
       - name: Build and publish to ghcr.io
         uses: macbre/push-to-ghcr@master
