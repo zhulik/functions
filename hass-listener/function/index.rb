@@ -11,7 +11,7 @@ get "/healthcheck" do
 end
 
 post "/*" do
-  Function::Handler.new(request).call
+  [200, {}, Function::Handler.new(request.env).call]
 end
 
 error Function::Unauthorized do
