@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 require "sinatra"
+require "sentry-ruby"
+
+if ENV.key?("SENTRY_DSN")
+  Sentry.init do |config|
+    config.dsn = ENV.fetch("SENTRY_DSN", nil)
+  end
+end
 
 require_relative "lib/function"
 
@@ -17,3 +24,6 @@ end
 error Function::Unauthorized do
   [401, {}, "UNAUTHORIZED"]
 end
+
+use Sentry::Rack::CaptureExceptions
+run Sinatra::Application

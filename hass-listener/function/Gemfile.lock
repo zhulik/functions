@@ -28,6 +28,7 @@ GEM
       rspec-files (~> 1.0)
       rspec-memory (~> 1.0)
     build-environment (1.13.0)
+    concurrent-ruby (1.1.10)
     console (1.16.2)
       fiber-local
     diff-lcs (1.5.0)
@@ -114,6 +115,8 @@ GEM
     samovar (2.1.4)
       console (~> 1.0)
       mapping (~> 1.0)
+    sentry-ruby (5.7.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -141,6 +144,7 @@ DEPENDENCIES
   rubocop
   rubocop-performance
   rubocop-rspec
+  sentry-ruby
   simplecov
   sinatra
   zeitwerk

@@ -14,7 +14,7 @@ RUN chmod +x /usr/bin/fwatchdog
 EXPOSE 8080
 HEALTHCHECK --interval=2s CMD curl -f http://127.0.0.1:4567/healthcheck
 
-ENV fprocess="bundle exec ruby index.rb"
+ENV fprocess="bundle exec falcon serve -b http://0.0.0.0 -p 4567"
 ENV upstream_url="http://127.0.0.1:4567"
 ENV mode="http"
 ENV APP_ENV="production"
