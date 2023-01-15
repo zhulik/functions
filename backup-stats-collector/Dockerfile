@@ -11,9 +11,6 @@ RUN adduser --system app &&\
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
 
-RUN apt-get update &&\
-  apt-get install -qy --no-install-recommends restic
-
 EXPOSE 8080
 HEALTHCHECK --interval=2s CMD curl -f http://127.0.0.1:4567/healthcheck
 
@@ -27,7 +24,10 @@ CMD ["fwatchdog"]
 FROM base as builder
 
 RUN apt-get update &&\
-  apt-get install -qy --no-install-recommends build-essential
+  apt-get install -qy --no-install-recommends build-essential wget
+
+RUN wget -O- https://github.com/restic/restic/releases/download/v0.15.0/restic_0.15.0_linux_amd64.bz2 | bzip2 -d > /usr/bin/restic &&\
+    chmod +x /usr/bin/restic
 
 COPY function/Gemfile function/Gemfile.lock ./
 RUN bundle install
@@ -35,5 +35,6 @@ RUN bundle install
 FROM base
 
 COPY --from=builder /mnt/ .
+COPY --from=builder /usr/bin/restic /usr/bin
 COPY function .
 USER app
