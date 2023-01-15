@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require "csv"
+ENV["ENV"] ||= "test"
+ENV["AUTH_TOKEN"] ||= "token"
 
 require "async/rspec"
 require "simplecov"
@@ -9,7 +10,7 @@ SimpleCov.start do
   add_filter "spec"
 end
 
-# Zeitwerk::Loader.eager_load_all
+require "function"
 
 RSpec.configure do |config|
   config.disable_monkey_patching!

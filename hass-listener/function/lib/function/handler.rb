@@ -15,6 +15,6 @@ class Function::Handler
   private
 
   def authenticate!
-    raise Unauthorized if @request.env.dig("rack.request.query_hash", "token") != AUTH_TOKEN
+    raise Function::Unauthorized if @request.env.dig("rack.request.query_hash", "token") != AUTH_TOKEN
   end
 end
