@@ -8,6 +8,7 @@ gem "falcon"
 gem "sentry-ruby"
 gem "sinatra"
 gem "zeitwerk"
+gem "ox"
 
 group :development, :test do
   gem "async-rspec"
