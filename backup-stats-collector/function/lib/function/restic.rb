@@ -33,6 +33,6 @@ class Function::Restic
   end
 
   def last_verified
-    @s3.get_object(bucket: MINIO_BUCKET, key: LAST_VERIFIED_PATH).read.to_i
+    @s3.get_object(bucket: MINIO_BUCKET, key: LAST_VERIFIED_PATH).body.read.to_i
   end
 end
