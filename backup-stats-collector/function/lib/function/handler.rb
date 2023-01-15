@@ -2,6 +2,7 @@
 
 class Function::Handler
   AUTH_TOKEN = ENV.fetch("AUTH_TOKEN")
+  METRICS_PREFIX = ENV.fetch("METRICS_PREFIX")
 
   def initialize(env)
     @env = env
@@ -21,10 +22,10 @@ class Function::Handler
 
   def to_prometheus_metrics(stats)
     lines = stats[:snapshots].map do |host, timestamp|
-      "archlinux_backup_last_snapshot{host=\"#{host}\"} #{timestamp}"
+      "#{METRICS_PREFIX}_last_snapshot{host=\"#{host}\"} #{timestamp}"
     end
 
-    lines << "archlinux_backup_last_verified{} #{stats[:last_verified]}" if stats.key?(:last_verified)
+    lines << "#{METRICS_PREFIX}_last_verified{} #{stats[:last_verified]}" if stats.key?(:last_verified)
 
     lines.join("\n")
   end
