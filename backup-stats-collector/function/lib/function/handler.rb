@@ -16,7 +16,7 @@ class Function::Handler
   private
 
   def authenticate!
-    raise Function::Unauthorized if @env.dig("rack.request.query_hash", "token") != AUTH_TOKEN
+    raise Function::Unauthorized if @env['HTTP_AUTHORIZATION'] != AUTH_TOKEN
   end
 
   def to_prometheus_metrics(stats)

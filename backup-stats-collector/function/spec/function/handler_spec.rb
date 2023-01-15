@@ -7,7 +7,7 @@ RSpec.describe Function::Handler do
     subject { handler.call }
 
     context "when token is valid" do
-      let(:env) { { "rack.request.query_hash" => { "token" => ENV.fetch("AUTH_TOKEN") } } }
+      let(:env) { { "HTTP_AUTHORIZATION" => ENV.fetch("AUTH_TOKEN") } }
 
       before do
         allow_any_instance_of(Function::Restic).to receive(:stats) # rubocop:disable RSpec/AnyInstance
@@ -33,7 +33,7 @@ RSpec.describe Function::Handler do
     end
 
     context "when token is invalid" do
-      let(:env) { { "rack.request.query_hash" => { "token" => "wrong" } } }
+      let(:env) { { "HTTP_AUTHORIZATION" => "wrong" } }
 
       it "raises unauthorized" do
         expect { subject }.to raise_error(Function::Unauthorized)
