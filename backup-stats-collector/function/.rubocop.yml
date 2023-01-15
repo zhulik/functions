@@ -32,3 +32,6 @@ Style/SymbolArray:
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
+
+RSpec/ExampleLength:
+  Max: 10

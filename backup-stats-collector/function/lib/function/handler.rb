@@ -10,12 +10,18 @@ class Function::Handler
   def call
     authenticate!
 
-    Function::Restic.new.stats.to_json
+    to_prometheus_metrics(Function::Restic.new.stats)
   end
 
   private
 
   def authenticate!
     raise Function::Unauthorized if @env.dig("rack.request.query_hash", "token") != AUTH_TOKEN
+  end
+
+  def to_prometheus_metrics(stats)
+    (stats[:snapshots].map do |host, timestamp|
+      "archlinux_backup_last_snapshot{host=\"#{host}\"} #{timestamp}"
+    end + ["archlinux_backup_last_verified{} #{stats[:last_verified]}"]).join("\n")
   end
 end
