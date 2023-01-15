@@ -1,4 +1,4 @@
-name: Push
+name: Build
 
 on:
   - push
@@ -6,7 +6,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' }}
 
     strategy:
       matrix:
@@ -34,6 +33,7 @@ jobs:
           bundle exec rspec
 
       - name: Build and publish to ghcr.io
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: macbre/push-to-ghcr@master
         with:
           image_name: ${{ github.repository_owner }}/fn-${{ matrix.function }}
@@ -41,3 +41,5 @@ jobs:
           dockerfile: "${{ matrix.function }}/Dockerfile"
           image_tag: latest
           context: ${{ matrix.function }}
+
+      # TODO: deploy
