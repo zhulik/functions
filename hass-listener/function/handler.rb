@@ -1,17 +1,16 @@
-require 'sinatra'
-
 class Handler
+  class Unauthorized < StandardError; end
+
+  AUTH_TOKEN = ENV.fetch("AUTH_TOKEN")
+
   def run(request)
+    authenticate!(request)
     [200, {}, request.env.to_json]
   end
-end
 
-handler = Handler.new
+  private
 
-get '/healthcheck' do
-  [200, {}, "ok"]
-end
-
-post '/*' do
-  handler.run(request)
+  def authenticate!(request)
+    raise Unauthorized if request.env.dig("rack.request.query_hash", "token") != AUTH_TOKEN
+  end
 end

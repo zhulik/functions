@@ -1,19 +1,25 @@
 name: Push
 
-on: [push]
+on:
+  - push
 
 jobs:
   build:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
+    strategy:
+      matrix:
+        function:
+          - hass-listener
+
     steps:
       - uses: actions/checkout@v2
 
       - name: Build and publish to ghcr.io
         uses: macbre/push-to-ghcr@master
         with:
-          image_name: ${{ github.repository_owner }}/fn-hass-listener
+          image_name: ${{ github.repository_owner }}/fn-${{ matrix.function }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          dockerfile: "hass-listener/Dockerfile"
-          image_tag: "latest"
-          context: hass-listener
+          dockerfile: "${{ matrix.function }}/Dockerfile"
+          image_tag: latest
+          context: ${{ matrix.function }}
