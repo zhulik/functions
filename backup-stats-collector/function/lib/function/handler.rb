@@ -8,9 +8,9 @@ class Function::Handler
   end
 
   def call
-    # authenticate!
+    authenticate!
 
-    Function::Restic.new.stats
+    Function::Restic.new.stats.to_json
   end
 
   private
