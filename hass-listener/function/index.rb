@@ -2,9 +2,9 @@
 
 require "sinatra"
 
-require_relative "lib/handler"
+require_relative "lib/function"
 
-handler = Handler.new
+class Unauthorized < StandardError; end
 
 set :bind, "0.0.0.0"
 
@@ -13,9 +13,9 @@ get "/healthcheck" do
 end
 
 post "/*" do
-  handler.run(request)
+  Function::Handler.new(request).call
 end
 
-error Handler::Unauthorized do
+error Unauthorized do
   [401, {}, "UNAUTHORIZED"]
 end
