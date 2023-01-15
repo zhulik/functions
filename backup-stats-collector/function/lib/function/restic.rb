@@ -29,7 +29,7 @@ class Function::Restic
         .reverse
         .map { { time: DateTime.parse(_1[:time]), hostname: _1[:hostname] } }
         .group_by { _1[:hostname] }
-        .transform_values { _1.first[:time].to_time.to_i }
+        .transform_values { Time.now.to_i - _1.first[:time].to_time.to_i }
   end
 
   def last_verified

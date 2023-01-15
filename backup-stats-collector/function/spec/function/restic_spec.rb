@@ -15,12 +15,16 @@ RSpec.describe Function::Restic do
   describe "#stats" do
     subject { restic.stats }
 
+    before do
+      Timecop.freeze(2023, 0o1, 16)
+    end
+
     it "returns repository stats" do
       expect(subject).to eq({
                               snapshots: {
-                                "server.example.com" => 1_673_755_203,
-                                "desktop.example.com" => 1_673_718_765,
-                                "laptop.example.com" => 1_673_706_601
+                                "server.example.com" => 68_397,
+                                "desktop.example.com" => 104_835,
+                                "laptop.example.com" => 116_999
                               },
                               last_verified: 123
                             })

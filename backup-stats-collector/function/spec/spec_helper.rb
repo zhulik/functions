@@ -10,6 +10,7 @@ ENV["LAST_VERIFIED_PATH"] ||= "last_verified"
 
 require "async/rspec"
 require "simplecov"
+require "timecop"
 
 SimpleCov.start do
   add_filter "spec"
