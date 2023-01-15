@@ -1,38 +1,31 @@
-# TODO: mulstistage build
-FROM openfaas/of-watchdog:0.8.2 as watchdog
+FROM ruby:3.2.0-slim as base
 
-FROM ruby:3.2.0-slim-buster
-
-COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
-RUN chmod +x /usr/bin/fwatchdog
-
-RUN apt-get update &&\
-  apt-get install -qy --no-install-recommends build-essential
-
-RUN mkdir -p /home/app/function
-
-WORKDIR /home/app/function
-
-RUN addgroup --system app &&\
-    adduser --system --ingroup app app
-
-RUN chown app:app -R /home/app
-
-USER app
-
+RUN adduser app
+WORKDIR /mnt
+RUN bundle config --local path vendor/bundle
 EXPOSE 8080
-
 HEALTHCHECK --interval=2s CMD curl -f http://127.0.0.1:4567/healthcheck
 
-ENV fprocess="ruby index.rb"
+ENV fprocess="bundle exec ruby index.rb"
 ENV upstream_url="http://127.0.0.1:4567"
 ENV mode="http"
 ENV APP_ENV="production"
 
 CMD ["fwatchdog"]
 
-COPY function/Gemfile .
+FROM base as builder
 
+RUN apt-get update &&\
+  apt-get install -qy --no-install-recommends build-essential
+COPY function/Gemfile .
 RUN bundle install
 
+
+FROM openfaas/of-watchdog:0.8.2 as watchdog
+FROM base
+
+COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
+RUN chmod +x /usr/bin/fwatchdog
+COPY --from=builder /mnt/ .
 COPY function .
+USER app

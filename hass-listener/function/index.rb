@@ -1,6 +1,6 @@
 require "sinatra"
 
-require_relative "handler"
+require_relative "lib/handler"
 
 handler = Handler.new
 
