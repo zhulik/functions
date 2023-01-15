@@ -24,15 +24,22 @@ class Function::Restic
   private
 
   def snapshots
-    JSON.parse(Async::Process.capture("restic", "snapshots", "--no-lock", "--json"), symbolize_names: true)
+    JSON.parse(restic_output, symbolize_names: true)
+        .map { { time: now - DateTime.parse(_1[:time]).to_time.to_i, hostname: _1[:hostname] } }
         .sort_by { _1[:time] }
-        .reverse
-        .map { { time: DateTime.parse(_1[:time]), hostname: _1[:hostname] } }
         .group_by { _1[:hostname] }
-        .transform_values { Time.now.to_i - _1.first[:time].to_time.to_i }
+        .transform_values { _1.first[:time] }
   end
 
   def last_verified
     @s3.get_object(bucket: MINIO_BUCKET, key: LAST_VERIFIED_PATH).body.read.to_i
+  end
+
+  def restic_output
+    Async::Process.capture("restic", "snapshots", "--no-lock", "--json")
+  end
+
+  def now
+    Time.now.to_i
   end
 end
