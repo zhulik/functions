@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "async/process"
+require "aws-sdk-s3"
 require "zeitwerk"
 
 loader = Zeitwerk::Loader.for_gem

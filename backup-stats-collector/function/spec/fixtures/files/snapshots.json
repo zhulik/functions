@@ -1,0 +1,206 @@
+[
+  {
+    "time": "2022-12-18T13:05:59.121150952+01:00",
+    "parent": "9977ce5a190f89f78f2425cb6828b4b67e494bc8d9cc1ddd56e5fc3baf77b82a",
+    "tree": "bf6874f57b7216a1444758ed407751fae418dd33510bf6db1e3256f18d21a7d4",
+    "paths": [
+      "/",
+      "/home"
+    ],
+    "hostname": "desktop.example.com",
+    "username": "username",
+    "uid": 1000,
+    "gid": 1000,
+    "excludes": [
+    ],
+    "id": "d153331aca31a273aacbeb421c75c16f211bfa5ce3bac23f63370f41af7b2d00",
+    "short_id": "d153331a"
+  },
+  {
+    "time": "2022-12-22T18:11:16.455959733+01:00",
+    "parent": "c3e984dffd20d70787966334ceeb7f437f4fff770a85bce6a34d5c8433a7b33b",
+    "tree": "b6ad6f4b5e85ebfc004f4420d7c670f985b31f17018dd73a74e63e9dffaab090",
+    "paths": [
+      "/",
+      "/home"
+    ],
+    "hostname": "laptop.example.com",
+    "username": "username",
+    "uid": 1000,
+    "gid": 1000,
+    "excludes": [
+    ],
+    "id": "aa136f41c5bb0cde302969c291de77eed6edc7afb7b1d5082c104b4077f4f732",
+    "short_id": "aa136f41"
+  },
+  {
+    "time": "2022-12-31T05:00:01.696926715+01:00",
+    "parent": "fb21f4ffc7c6cce6a1a1e07d81bc3d5b4e642f0fc9145f2f2941c1394f0636d1",
+    "tree": "5df17b96ba0ebe13057d53b4f98ee9f0a9444cad315bad4ca197e83f341f4c93",
+    "paths": [
+      "/",
+      "/home"
+    ],
+    "hostname": "server.example.com",
+    "username": "username",
+    "uid": 1000,
+    "gid": 1000,
+    "excludes": [
+    ],
+    "id": "df96c0e36aa357ca7cf5dc5552cff0bd79fc90942c6467dcaa3b44050e77b8d2",
+    "short_id": "df96c0e3"
+  },
+  {
+    "time": "2023-01-03T12:32:47.704274935+01:00",
+    "parent": "d153331aca31a273aacbeb421c75c16f211bfa5ce3bac23f63370f41af7b2d00",
+    "tree": "e44e0a68abbb67dc55298509f198f135897b161beb1c63f2404dc53825851c89",
+    "paths": [
+      "/",
+      "/home"
+    ],
+    "hostname": "desktop.example.com",
+    "username": "username",
+    "uid": 1000,
+    "gid": 1000,
+    "excludes": [
+    ],
+    "id": "c481a225ec410cfe8aae820ce370bfb8e8ea0bc581fe85a98abe83c79b3216bf",
+    "short_id": "c481a225"
+  },
+  {
+    "time": "2023-01-08T14:41:01.838477155+01:00",
+    "parent": "3c6d37aa1ca38bde60ef2b09b122770777e12991d48638926b2f1ac9a9f2a918",
+    "tree": "c3ccf18f07149ed8c1d468bf2dce7e3c0e605354da0be18787db366df6957dcc",
+    "paths": [
+      "/",
+      "/home"
+    ],
+    "hostname": "laptop.example.com",
+    "username": "username",
+    "uid": 1000,
+    "gid": 1000,
+    "excludes": [
+    ],
+    "id": "58c839e67ab643dd8e2612491d25aede89967bdffd43fa737c5cfbf17dbf7ce7",
+    "short_id": "58c839e6"
+  },
+  {
+    "time": "2023-01-08T14:44:04.260568086+01:00",
+    "parent": "9118de28c45602a977f50b7307796cf8f221bcd08561433134bcb4ec391ed41d",
+    "tree": "987f071d5a8c2b64f921d29e9176f75e6492e1e2ca841d34c949083e63106fd5",
+    "paths": [
+      "/",
+      "/home"
+    ],
+    "hostname": "server.example.com",
+    "username": "username",
+    "uid": 1000,
+    "gid": 1000,
+    "excludes": [
+    ],
+    "id": "3ae1408cc006ad2ddee39a719d153f012d66e89628a26b1af0b4e2ef7226b509",
+    "short_id": "3ae1408c"
+  },
+  {
+    "time": "2023-01-11T19:52:03.920384977+01:00",
+    "parent": "c481a225ec410cfe8aae820ce370bfb8e8ea0bc581fe85a98abe83c79b3216bf",
+    "tree": "e17b254bdc47fc54593e33a423495af76432ae5afad210e5176be82ab0e8ab98",
+    "paths": [
+      "/",
+      "/home"
+    ],
+    "hostname": "desktop.example.com",
+    "username": "username",
+    "uid": 1000,
+    "gid": 1000,
+    "excludes": [
+    ],
+    "id": "cf66ed0d5632ed00dfcfb0c10d2513428a40a37d8eaeb515a58b3659b4fd4553",
+    "short_id": "cf66ed0d"
+  },
+  {
+    "time": "2023-01-14T15:18:42.862620273+01:00",
+    "parent": "81e6df7fb2bcca9bd867b480a8ba139e21acb0f3a485b12efa678aa4c5f000a3",
+    "tree": "7b70469b9f58a350f038868d7fe7c43442ad6ef312b822260e8aebca6a7a9f26",
+    "paths": [
+      "/",
+      "/home"
+    ],
+    "hostname": "laptop.example.com",
+    "username": "username",
+    "uid": 1000,
+    "gid": 1000,
+    "excludes": [
+    ],
+    "id": "0ec59f3ba1c44c32e9153dd2727a447cf185b9a57e7b09af457dc0c3a868a2ce",
+    "short_id": "0ec59f3b"
+  },
+  {
+    "time": "2023-01-14T15:30:01.399751017+01:00",
+    "parent": "0ec59f3ba1c44c32e9153dd2727a447cf185b9a57e7b09af457dc0c3a868a2ce",
+    "tree": "dc40ac73e567cda332fa79c9fda52d0df380f02c6d4d9c11884761494b3e018a",
+    "paths": [
+      "/",
+      "/home"
+    ],
+    "hostname": "laptop.example.com",
+    "username": "username",
+    "uid": 1000,
+    "gid": 1000,
+    "excludes": [
+    ],
+    "id": "4369f065001a2637c6be42a34bc871071aaf9a9aaada754d1f27577f42b017ed",
+    "short_id": "4369f065"
+  },
+  {
+    "time": "2023-01-14T17:56:25.835935414+01:00",
+    "parent": "9b27d26f62c4ffe2b89dbe6de0ebc7e2e84562e4c92e360a14475a1ff7bf1e27",
+    "tree": "558f63a523a88f5c8acc7ee3ca0737018046f7b837c4d5e138f21f631b03fd1d",
+    "paths": [
+      "/",
+      "/home"
+    ],
+    "hostname": "server.example.com",
+    "username": "username",
+    "uid": 1000,
+    "gid": 1000,
+    "excludes": [
+    ],
+    "id": "2e0ff0504b87b14a4e372f6e234024f6e707cdd38c6d6d9dff48f3d64e57b7d2",
+    "short_id": "2e0ff050"
+  },
+  {
+    "time": "2023-01-14T18:52:45.891715351+01:00",
+    "parent": "cf66ed0d5632ed00dfcfb0c10d2513428a40a37d8eaeb515a58b3659b4fd4553",
+    "tree": "0eaa1600be7d2e306ad627ace38cb9c3c88161902f9aa19fc13a3d4d49d3b934",
+    "paths": [
+      "/",
+      "/home"
+    ],
+    "hostname": "desktop.example.com",
+    "username": "username",
+    "uid": 1000,
+    "gid": 1000,
+    "excludes": [
+    ],
+    "id": "c088ea7a5dddd19549d979d37ac65d5ea4f226f779b9bc4b71e343920d48c8e9",
+    "short_id": "c088ea7a"
+  },
+  {
+    "time": "2023-01-15T05:00:03.456010744+01:00",
+    "parent": "2e0ff0504b87b14a4e372f6e234024f6e707cdd38c6d6d9dff48f3d64e57b7d2",
+    "tree": "a716ec47af449583a581ca1e11d3d408fcf6eb5953ac33aa06636ba2bac1ece1",
+    "paths": [
+      "/",
+      "/home"
+    ],
+    "hostname": "server.example.com",
+    "username": "username",
+    "uid": 1000,
+    "gid": 1000,
+    "excludes": [
+    ],
+    "id": "0d8caae88422f6391c2410b8d8ad27a31b7938196fca4fa133d07aad037d3422",
+    "short_id": "0d8caae8"
+  }
+]

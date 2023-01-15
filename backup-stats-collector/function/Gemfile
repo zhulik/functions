@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 gem "async-process"
+gem "aws-sdk-s3"
 gem "falcon"
 gem "sentry-ruby"
 gem "sinatra"

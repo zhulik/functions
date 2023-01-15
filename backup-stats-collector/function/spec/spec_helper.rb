@@ -3,6 +3,10 @@
 ENV["ENV"] ||= "test"
 ENV["AUTH_TOKEN"] ||= "token"
 
+ENV["MINIO_HOST"] ||= "minio.example.com"
+ENV["MINIO_BUCKET"] ||= "bucket"
+ENV["LAST_VERIFIED_PATH"] ||= "last_verified"
+
 require "async/rspec"
 require "simplecov"
 

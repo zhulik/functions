@@ -17,7 +17,7 @@ RSpec.describe Function::Handler do
     context "when token is invalid" do
       let(:env) { { "rack.request.query_hash" => { "token" => "wrong" } } }
 
-      it "raises unauthorized", skip: "reason" do
+      it "raises unauthorized" do
         expect { subject }.to raise_error(Function::Unauthorized)
       end
     end
