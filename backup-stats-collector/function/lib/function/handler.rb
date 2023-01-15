@@ -20,8 +20,12 @@ class Function::Handler
   end
 
   def to_prometheus_metrics(stats)
-    (stats[:snapshots].map do |host, timestamp|
+    lines = stats[:snapshots].map do |host, timestamp|
       "archlinux_backup_last_snapshot{host=\"#{host}\"} #{timestamp}"
-    end + ["archlinux_backup_last_verified{} #{stats[:last_verified]}"]).join("\n")
+    end
+
+    lines << "archlinux_backup_last_verified{} #{stats[:last_verified]}" if stats.key?(:last_verified)
+
+    lines.join("\n")
   end
 end

@@ -2,23 +2,15 @@
 
 class Function::Restic
   # restic gets it's arguments directly from env
-
-  MINIO_HOST = ENV.fetch("MINIO_HOST")
-  MINIO_BUCKET = ENV.fetch("MINIO_BUCKET")
-  LAST_VERIFIED_PATH = ENV.fetch("LAST_VERIFIED_PATH")
-
   def initialize
-    @s3 = Aws::S3::Client.new(
-      endpoint: "http://#{MINIO_HOST}",
-      force_path_style: true
-    )
+    @check_verification = ENV.key?("LAST_VERIFIED_PATH")
   end
 
   def stats
     {
       snapshots:,
       last_verified:
-    }
+    }.compact
   end
 
   private
@@ -32,14 +24,26 @@ class Function::Restic
   end
 
   def last_verified
-    now - @s3.get_object(bucket: MINIO_BUCKET, key: LAST_VERIFIED_PATH).body.read.to_i
+    return unless @check_verification
+
+    minio_bucket = ENV.fetch("MINIO_BUCKET")
+    last_verified_path = ENV.fetch("LAST_VERIFIED_PATH")
+
+    now - s3.get_object(bucket: minio_bucket, key: last_verified_path).body.read.to_i
   end
 
-  def restic_output
-    Async::Process.capture("restic", "snapshots", "--no-lock", "--json")
-  end
+  def restic_output = Async::Process.capture("restic", "snapshots", "--no-lock", "--json")
 
-  def now
-    Time.now.to_i
+  def now = Time.now.to_i
+
+  def s3
+    @s3 ||= begin
+      minio_host = ENV.fetch("MINIO_HOST")
+
+      Aws::S3::Client.new(
+        endpoint: "http://#{minio_host}",
+        force_path_style: true
+      )
+    end
   end
 end
