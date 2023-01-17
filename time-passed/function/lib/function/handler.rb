@@ -23,8 +23,6 @@ class Function::Handler
     raise Function::Unauthorized if @env["HTTP_AUTHORIZATION"] != AUTH_TOKEN
   end
 
-  def now = Time.now.to_i
-
   def s3
     @s3 ||= Aws::S3::Client.new(
       endpoint: "http://#{MINIO_HOST}",
@@ -32,5 +30,5 @@ class Function::Handler
     )
   end
 
-  def passed = now - s3.get_object(bucket: BUCKET, key: PATH).body.read.to_i
+  def passed = Time.now.to_i - s3.get_object(bucket: BUCKET, key: PATH).body.read.to_i
 end
