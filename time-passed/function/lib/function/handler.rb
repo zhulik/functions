@@ -14,7 +14,6 @@ class Function::Handler
   def call
     authenticate!
 
-    passed = now - s3.get_object(bucket: BUCKET, key: PATH).body.read.to_i
     "#{METRICS_PREFIX}_last_snapshot{host=\"external\"} #{passed}"
   end
 
@@ -32,4 +31,6 @@ class Function::Handler
       force_path_style: true
     )
   end
+
+  def passed = now - s3.get_object(bucket: BUCKET, key: PATH).body.read.to_i
 end

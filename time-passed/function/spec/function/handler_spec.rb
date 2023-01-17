@@ -7,15 +7,19 @@ RSpec.describe Function::Handler do
     subject { handler.call }
 
     context "when token is valid" do
-      let(:env) { { "rack.request.query_hash" => { "token" => ENV.fetch("AUTH_TOKEN") } } }
+      let(:env) { { "HTTP_AUTHORIZATION" => ENV.fetch("AUTH_TOKEN") } }
+
+      before do
+        allow(handler).to receive(:passed).and_return(123)
+      end
 
       it "does" do
-        expect(subject).to eq("{\"rack.request.query_hash\":{\"token\":\"token\"}}")
+        expect(subject).to eq("prefix_last_snapshot{host=\"external\"} 123")
       end
     end
 
     context "when token is invalid" do
-      let(:env) { { "rack.request.query_hash" => { "token" => "wrong" } } }
+      let(:env) { { "HTTP_AUTHORIZATION" => "wrong" } }
 
       it "raises unauthorized" do
         expect { subject }.to raise_error(Function::Unauthorized)
