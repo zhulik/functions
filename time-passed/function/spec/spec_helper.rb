@@ -3,7 +3,7 @@
 ENV["ENV"] ||= "test"
 ENV["AUTH_TOKEN"] ||= "token"
 ENV["BUCKET"] ||= "bucket"
-ENV["PATH"] ||= "path"
+ENV["FILE_PATH"] ||= "path"
 ENV["MINIO_HOST"] ||= "host"
 ENV["METRICS_PREFIX"] ||= "prefix"
 

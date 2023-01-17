@@ -24,10 +24,7 @@ class Function::Handler
   end
 
   def s3
-    @s3 ||= Aws::S3::Client.new(
-      endpoint: "http://#{MINIO_HOST}",
-      force_path_style: true
-    )
+    @s3 ||= Aws::S3::Client.new(endpoint: "http://#{MINIO_HOST}", force_path_style: true)
   end
 
   def passed = Time.now.to_i - s3.get_object(bucket: BUCKET, key: PATH).body.read.to_i
