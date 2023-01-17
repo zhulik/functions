@@ -4,6 +4,8 @@ class Function::Handler
   AUTH_TOKEN = ENV.fetch("AUTH_TOKEN")
   BUCKET = ENV.fetch("BUCKET")
   PATH = ENV.fetch("PATH")
+  MINIO_HOST = ENV.fetch("MINIO_HOST")
+  METRICS_PREFIX = ENV.fetch("METRICS_PREFIX")
 
   def initialize(env)
     @env = env
@@ -12,7 +14,8 @@ class Function::Handler
   def call
     authenticate!
 
-    now - s3.get_object(bucket: BUCKET, key: PATH).body.read.to_i
+    passed = now - s3.get_object(bucket: BUCKET, key: PATH).body.read.to_i
+    "#{METRICS_PREFIX}_last_snapshot{host=\"external\"} #{passed}"
   end
 
   private
@@ -24,13 +27,9 @@ class Function::Handler
   def now = Time.now.to_i
 
   def s3
-    @s3 ||= begin
-      minio_host = ENV.fetch("MINIO_HOST")
-
-      Aws::S3::Client.new(
-        endpoint: "http://#{minio_host}",
-        force_path_style: true
-      )
-    end
+    @s3 ||= Aws::S3::Client.new(
+      endpoint: "http://#{MINIO_HOST}",
+      force_path_style: true
+    )
   end
 end
