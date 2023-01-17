@@ -12,6 +12,7 @@ jobs:
         function:
           - hass-listener
           - backup-stats-collector
+          - time-passed
 
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.function }}/function/Gemfile
