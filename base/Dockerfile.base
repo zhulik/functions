@@ -20,4 +20,6 @@ ENV upstream_url="http://127.0.0.1:4567"
 ENV mode="http"
 ENV APP_ENV="production"
 
+ADD config.ru .
+
 CMD ["fwatchdog"]
