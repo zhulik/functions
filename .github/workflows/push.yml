@@ -4,8 +4,26 @@ on:
   - push
 
 jobs:
-  build:
+  base:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build and publish to ghcr.io
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: macbre/push-to-ghcr@master
+        with:
+          image_name: ${{ github.repository_owner }}/fn-base
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dockerfile: "base/Dockerfile.base"
+          image_tag: latest
+          context: base
+
+  functions:
+    runs-on: ubuntu-latest
+
+    needs:
+      - base
 
     strategy:
       matrix:
