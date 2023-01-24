@@ -1,6 +1,1 @@
-function/spec/
-function/coverage/
-
-.rspec
-.rubocop.yml
-.tool-versions
+../base/.dockerignore
