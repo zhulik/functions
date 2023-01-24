@@ -1,8 +1,24 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
+gem "async-process"
+gem "aws-sdk-s3"
 gem "falcon"
+gem "ox"
 gem "sentry-ruby"
 gem "sinatra"
 gem "zeitwerk"
-gem "ox"
-gem "aws-sdk-s3"
+
+group :development, :test do
+  gem "async-rspec"
+  gem "rspec"
+  gem "simplecov"
+  gem "timecop"
+end
+
+group :development do
+  gem "rubocop"
+  gem "rubocop-performance"
+  gem "rubocop-rspec"
+end
