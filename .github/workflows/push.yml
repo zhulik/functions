@@ -66,6 +66,13 @@ jobs:
           cd ${{ github.workspace }}/${{ matrix.function }}/function
           bundle exec rspec
 
+      - name: Replace symlinks with originals
+        run: |
+          for f in $(find . -type l)
+          do
+              cp --remove-destination $(readlink -e $f) $f
+          done
+
       - name: Build and publish to ghcr.io
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: macbre/push-to-ghcr@master
