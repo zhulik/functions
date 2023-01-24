@@ -2,9 +2,11 @@
 
 class Function::Handler
   AUTH_TOKEN = ENV.fetch("AUTH_TOKEN")
+
   BUCKET = ENV.fetch("BUCKET")
   PATH = ENV.fetch("FILE_PATH")
   MINIO_HOST = ENV.fetch("MINIO_HOST")
+
   METRICS_PREFIX = ENV.fetch("METRICS_PREFIX")
 
   def initialize(env)
