@@ -9,13 +9,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build and publish to ghcr.io
+      - name: Build and publish base to ghcr.io
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: macbre/push-to-ghcr@master
         with:
           image_name: ${{ github.repository_owner }}/fn-base
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: "base/Dockerfile.base"
+          image_tag: latest
+          context: base
+
+      - name: Build and publish builder to ghcr.io
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: macbre/push-to-ghcr@master
+        with:
+          image_name: ${{ github.repository_owner }}/fn-builder
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dockerfile: "base/Dockerfile.builder"
           image_tag: latest
           context: base
 
