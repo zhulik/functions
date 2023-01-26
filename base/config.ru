@@ -3,11 +3,9 @@
 require "sinatra"
 require "sentry-ruby"
 
-require "zeitwerk"
-require "async/process"
-require "aws-sdk-s3"
-
 require_relative "lib/function"
+
+AUTH_TOKEN = ENV.fetch("AUTH_TOKEN")
 
 if ENV.key?("SENTRY_DSN")
   Sentry.init do |config|
@@ -22,6 +20,8 @@ get "/healthcheck" do
 end
 
 post "/*" do
+  raise Function::Unauthorized if request.env["HTTP_AUTHORIZATION"] != AUTH_TOKEN
+
   [200, {}, Function::Handler.new(request.env).call]
 end
 
