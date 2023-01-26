@@ -3,13 +3,17 @@
 require "sinatra"
 require "sentry-ruby"
 
+require "zeitwerk"
+require "async/process"
+require "aws-sdk-s3"
+
+require_relative "lib/function"
+
 if ENV.key?("SENTRY_DSN")
   Sentry.init do |config|
     config.dsn = ENV.fetch("SENTRY_DSN", nil)
   end
 end
-
-require_relative "lib/function"
 
 set :bind, "0.0.0.0"
 

@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require "zeitwerk"
-
-require "aws-sdk-s3"
-
 loader = Zeitwerk::Loader.for_gem
 loader.setup
 
