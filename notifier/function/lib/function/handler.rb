@@ -16,6 +16,6 @@ class Function::Handler
 
   def call
     TELEGRAM.notify(@body[:text])
-    {"ok": true}.to_json
+    { ok: true }.to_json
   end
 end
