@@ -7,7 +7,7 @@ RSpec.describe Function::Handler do
     subject { handler.call }
 
     it "does" do
-      expect(subject).to eq("{}")
+      expect(subject).to be_nil
     end
   end
 end
