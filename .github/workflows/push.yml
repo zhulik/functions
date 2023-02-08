@@ -42,6 +42,7 @@ jobs:
           - hass-listener
           - backup-stats-collector
           - time-passed
+          - notifier
 
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.function }}/function/Gemfile
