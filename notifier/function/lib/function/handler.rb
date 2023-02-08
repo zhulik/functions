@@ -12,7 +12,7 @@ class Function::Handler
   def initialize(env, body:)
     @env = env
     @body = body
-    pp("env=#{env}, body=#{body}")
+    Console.logger.info(self) { "env=#{env}, body=#{body}" }
   end
 
   def call
