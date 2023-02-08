@@ -20,7 +20,9 @@ get "/healthcheck" do
 end
 
 handler = lambda do
-  raise Function::Unauthorized if request.env["HTTP_AUTHORIZATION"] != AUTH_TOKEN
+  token = request.env["HTTP_AUTHORIZATION"] || params[:token]
+
+  raise Function::Unauthorized if token != AUTH_TOKEN
 
   [200, {}, Function::Handler.new(request.env).call]
 end
