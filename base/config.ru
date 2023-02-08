@@ -19,11 +19,18 @@ get "/healthcheck" do
   [200, {}, "ok"]
 end
 
-post "/*" do
+handler = lambda do
   raise Function::Unauthorized if request.env["HTTP_AUTHORIZATION"] != AUTH_TOKEN
 
   [200, {}, Function::Handler.new(request.env).call]
 end
+
+get "/*", &handler
+post "/*", &handler
+patch "/*", &handler
+put "/*", &handler
+delete "/*", &handler
+options "/*", &handler
 
 error Function::Unauthorized do
   [401, {}, "UNAUTHORIZED"]
