@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Function::Restic
+  include Memery
+
   # restic gets it's arguments directly from env
   def initialize
     @check_verification = ENV.key?("LAST_VERIFIED_PATH")
@@ -36,14 +38,12 @@ class Function::Restic
 
   def now = Time.now.to_i
 
-  def s3
-    @s3 ||= begin
-      minio_host = ENV.fetch("MINIO_HOST")
+  memoize def s3
+    minio_host = ENV.fetch("MINIO_HOST")
 
-      Aws::S3::Client.new(
-        endpoint: "http://#{minio_host}",
-        force_path_style: true
-      )
-    end
+    Aws::S3::Client.new(
+      endpoint: "http://#{minio_host}",
+      force_path_style: true
+    )
   end
 end

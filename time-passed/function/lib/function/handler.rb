@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Function::Handler
+  include Memery
+
   BUCKET = ENV.fetch("BUCKET")
   PATH = ENV.fetch("FILE_PATH")
   MINIO_HOST = ENV.fetch("MINIO_HOST")
@@ -17,9 +19,7 @@ class Function::Handler
 
   private
 
-  def s3
-    @s3 ||= Aws::S3::Client.new(endpoint: "http://#{MINIO_HOST}", force_path_style: true)
-  end
+  memoize def s3 Aws::S3::Client.new(endpoint: "http://#{MINIO_HOST}", force_path_style: true)
 
   def passed = Time.now.to_i - s3.get_object(bucket: BUCKET, key: PATH).body.read.to_i
 end
