@@ -4,6 +4,7 @@ ENV["ENV"] ||= "test"
 ENV["AUTH_TOKEN"] ||= "token"
 
 require "async/rspec"
+require "webmock/rspec"
 require "simplecov"
 
 SimpleCov.start do

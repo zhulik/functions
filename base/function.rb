@@ -4,6 +4,8 @@ require "zeitwerk"
 
 require "async/process"
 require "aws-sdk-s3"
+require "faraday"
+require "memery"
 
 loader = Zeitwerk::Loader.for_gem
 loader.setup
