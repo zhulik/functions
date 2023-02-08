@@ -12,6 +12,7 @@ class Function::Handler
   def initialize(env, body:)
     @env = env
     @body = body
+    pp("env=#{env}, body=#{body}")
   end
 
   def call

@@ -3,6 +3,8 @@
 class Function::Telegram
   include Memery
 
+  API_URL = "https://api.telegram.org"
+
   def initialize(token, chats)
     @token = token
     @chats = chats
@@ -10,16 +12,20 @@ class Function::Telegram
 
   def notify(text)
     @chats.map do |chat_id|
-      Async { connection.post("/bot#{@token}/sendMessage", chat_id:, text:, parse_mode: "Markdown") }
+      Async { send_notification(chat_id:, text:) }
     end.map(&:wait)
   end
 
   private
 
   memoize def connection
-    Faraday.new("https://api.telegram.org") do |f|
+    Faraday.new(API_URL) do |f|
       f.request :json
       f.response :raise_error
     end
+  end
+
+  def send_notification(chat_id:, text:)
+    connection.post("/bot#{@token}/sendMessage", chat_id:, text:, parse_mode: "Markdown")
   end
 end
