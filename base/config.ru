@@ -26,7 +26,9 @@ handler = lambda do
 
   body = begin
     JSON.parse(request.body.read, symbolize_names: true)
-  rescue StandardError
+  rescue StandardError => e
+    pp(e)
+    pp(e.message)
     nil
   end
 
