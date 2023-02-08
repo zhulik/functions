@@ -8,9 +8,9 @@ class Function::Restic
 
   def stats
     {
-      snapshots:,
-      last_verified:
-    }.compact
+      snapshots: Async { snapshots },
+      last_verified: Async { last_verified }
+    }.transform_values(&:wait).compact
   end
 
   private
