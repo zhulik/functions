@@ -14,6 +14,8 @@ class Function::Telegram
     end.map(&:wait)
   end
 
+  private
+
   memoize def connection
     Faraday.new("https://api.telegram.org") do |f|
       f.request :json

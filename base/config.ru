@@ -27,10 +27,7 @@ handler = lambda do
   body = begin
     str = request.body.read
     JSON.parse(str, symbolize_names: true)
-    pp(str)
   rescue StandardError => e
-    pp(e)
-    pp(e.message)
     nil
   end
 
