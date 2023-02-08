@@ -15,6 +15,6 @@ class Function::Handler
   end
 
   def call
-    @body
+    @body.to_json
   end
 end

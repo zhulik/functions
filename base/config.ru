@@ -25,7 +25,9 @@ handler = lambda do
   raise Function::Unauthorized if token != AUTH_TOKEN
 
   body = begin
-    JSON.parse(request.body.read, symbolize_names: true)
+    str = request.body.read
+    JSON.parse(str, symbolize_names: true)
+    pp(str)
   rescue StandardError => e
     pp(e)
     pp(e.message)
