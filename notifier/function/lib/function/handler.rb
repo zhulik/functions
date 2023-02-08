@@ -9,12 +9,12 @@ class Function::Handler
 
   TELEGRAM = Function::Telegram.new(TELEGRAM_TOKEN, TELEGRAM_CHATS)
 
-  def initialize(env)
+  def initialize(env, body: nil)
     @env = env
+    @body = body
   end
 
   def call
-    pp(@env.to_json)
-    @env.to_json
+    @body
   end
 end

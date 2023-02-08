@@ -3,8 +3,9 @@
 class Function::Handler
   METRICS_PREFIX = ENV.fetch("METRICS_PREFIX")
 
-  def initialize(env)
+  def initialize(env, body: nil)
     @env = env
+    @body = body
   end
 
   def call

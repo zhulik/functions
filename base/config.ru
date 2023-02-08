@@ -24,7 +24,13 @@ handler = lambda do
 
   raise Function::Unauthorized if token != AUTH_TOKEN
 
-  [200, {}, Function::Handler.new(request.env).call]
+  body = begin
+    JSON.parse(request.body.read, symbolize_names: true)
+  rescue StandardError
+    nil
+  end
+
+  [200, {}, Function::Handler.new(request.env, body:).call]
 end
 
 get "/*", &handler

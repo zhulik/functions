@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Function::Handler
-  def initialize(env)
+  def initialize(env, body: nil)
     @env = env
+    @body = body
   end
 
   def call
