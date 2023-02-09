@@ -26,6 +26,7 @@ class Function::Telegram
   end
 
   def send_notification(chat_id:, text:)
+    Console.logger.info(self) { "chat_id=#{chat_id}, text=#{text}, token=#{@token[0..2]}" }
     connection.post("/bot#{@token}/sendMessage", chat_id:, text:, parse_mode: "Markdown")
   end
 end
