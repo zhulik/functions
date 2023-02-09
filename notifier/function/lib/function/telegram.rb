@@ -25,7 +25,11 @@ class Function::Telegram
     end
   end
 
-  def send_notification(chat_id:, text:)
-    connection.post("/bot#{@token}/sendMessage", chat_id:, text:, parse_mode: "Markdown")
+  def send_notification(chat_id:, text:, parse_mode: "Markdown")
+    connection.post("/bot#{@token}/sendMessage", chat_id:, text:, parse_mode:)
+  rescue Faraday::BadRequestError
+    return send_notification(chat_id:, text:, parse_mode: "HTML") if parse_mode == "Markdown"
+
+    raise
   end
 end
