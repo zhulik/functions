@@ -21,12 +21,12 @@ class Function::Telegram
   memoize def connection
     Faraday.new(API_URL) do |f|
       f.request :json
-      f.response :raise_error
+      # f.response :raise_error
     end
   end
 
   def send_notification(chat_id:, text:)
-    Console.logger.info(self) { "chat_id=#{chat_id}, text=#{text}, token=#{@token[0..2]}" }
-    connection.post("/bot#{@token}/sendMessage", chat_id:, text:, parse_mode: "Markdown")
+    response = connection.post("/bot#{@token}/sendMessage", chat_id:, text:, parse_mode: "Markdown")
+    Console.logger.info(self) { "body=#{response.body}" }
   end
 end
