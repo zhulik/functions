@@ -43,6 +43,7 @@ jobs:
           - backup-stats-collector
           - time-passed
           - notifier
+          - dummy
 
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.function }}/function/Gemfile
