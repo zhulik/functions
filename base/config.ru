@@ -19,6 +19,10 @@ get "/healthcheck" do
   [200, {}, "ok"]
 end
 
+get "/_/ready" do
+  [200, {}, "ok"]
+end
+
 handler = lambda do
   token = request.env["HTTP_AUTHORIZATION"] || params[:token]
 
@@ -27,7 +31,7 @@ handler = lambda do
   body = begin
     str = request.body.read
     JSON.parse(str, symbolize_names: true)
-  rescue StandardError => e
+  rescue StandardError
     nil
   end
 
