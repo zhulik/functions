@@ -17,6 +17,7 @@ HEALTHCHECK --interval=5s CMD [ -e /tmp/.lock ] || exit 1
 
 ENV fprocess="bundle exec falcon serve -b http://0.0.0.0 -p 4567 -n 1"
 ENV upstream_url="http://127.0.0.1:4567"
+ENV ready_path="/_/ready"
 ENV mode="http"
 ENV APP_ENV="production"
 ENV ENVIRONMENT="production"
