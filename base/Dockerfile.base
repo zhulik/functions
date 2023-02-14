@@ -1,4 +1,4 @@
-FROM openfaas/of-watchdog:0.8.2 as watchdog
+FROM openfaas/of-watchdog:0.9.11 as watchdog
 FROM ruby:3.2.0-slim
 
 WORKDIR /mnt
