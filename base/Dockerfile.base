@@ -1,5 +1,5 @@
-FROM openfaas/of-watchdog:0.9.11 as watchdog
-FROM ruby:3.2.0-slim
+FROM ghcr.io/openfaas/of-watchdog:0.9.11 as watchdog
+FROM ruby:3.2.0-alpine
 
 WORKDIR /mnt
 
